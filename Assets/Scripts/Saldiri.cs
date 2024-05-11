@@ -7,7 +7,7 @@ public class Saldiri : MonoBehaviour
     public Animator anim;
     float sonSaldiriAni;
     public float komboSifirlamaSuresi = 1.5f;
-    int komboSayisi = 0;
+    public int komboSayisi = 0;
 
     public float saldiriMiktari = 10f;
     public Transform saldiriNoktasi;
@@ -16,13 +16,13 @@ public class Saldiri : MonoBehaviour
     public LayerMask hasarVerilecekKatman;
     void Update()
     {
+        if (Time.time - sonSaldiriAni > komboSifirlamaSuresi)
+        {
+            komboSayisi = 1;
+        }
+
         if (Input.GetMouseButtonDown(0)) // saldiri gerceklestiriyor
         {
-            if (Time.time - sonSaldiriAni > komboSifirlamaSuresi)
-            {
-                komboSayisi = 0;
-            }
-
             sonSaldiriAni = Time.time;
             Saldir();
         }
@@ -31,8 +31,8 @@ public class Saldiri : MonoBehaviour
 
     void Saldir()  // kombo sayisina gore farkli animasyonu cagir
     {
-        komboSayisi++;
-        Debug.Log(komboSayisi);
+        //komboSayisi++;
+        //Debug.Log(komboSayisi);
 
         if (komboSayisi == 1)
         {
@@ -46,8 +46,13 @@ public class Saldiri : MonoBehaviour
         {
             anim.SetTrigger("saldiri3");
 
-            komboSayisi = 0;
+            komboSayisi = 1;
         }
+    }
+
+    public void KomboyuArttir()
+    {
+        komboSayisi++;
     }
 
     public void HasarVer()

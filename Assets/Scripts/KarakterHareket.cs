@@ -5,6 +5,8 @@ using UnityEngine;
 public class KarakterHareket : MonoBehaviour
 {
     public float hiz = 5f;
+
+
     public float yerCekimi = -9.81f;
     public float hoplamaGucu = 3f;
     private Vector3 karakterinHizi;
@@ -45,6 +47,10 @@ public class KarakterHareket : MonoBehaviour
         if (controller.isGrounded)
         {
             karakterinHizi.y = 0f;
+            if (Input.GetButtonDown("Jump"))
+            {
+                karakterinHizi.y += Mathf.Sqrt(hoplamaGucu * -2f * yerCekimi);
+            }
         }
 
 
